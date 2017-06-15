@@ -1,0 +1,107 @@
+/* bzflag
+ * Copyright (c) 1993 - 2004 Tim Riker
+ *
+ * This package is free software;  you can redistribute it and/or
+ * modify it under the terms of the license found in the file
+ * named COPYING that should have accompanied this file.
+ *
+ * THIS PACKAGE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+//#define SHOOTING_FIX
+
+
+
+// estimate a player's position at now+t, similar to dead reckoning
+void RobotPlayer::projectPosition(const Player *targ,const float t,float &x,float &y,float &z) const
+
+
+// get coordinates to aim at when shooting a player; steps:
+// 1. estimate how long it will take shot to hit target
+// 2. calc position of target at that point of time
+// 3. jump to 1., using projected position, loop until result is stable
+
+   // add 50ms for lag
+
+
+  // projected pos in building -> use current pos
+
+  // fire shot if any available
+
+  // Allow shooting only if angle is near and timer has elapsed
+
+
+
+    // only shoot if we miss by less than half a tanklength and no building inbetween
+
+	// try to not aim at teammates
+	for (int i=0; i <= World::getWorld()->getCurMaxPlayers(); i++)
+
+	  // separate shot by 0.2 - 0.8 sec (experimental value)
+
+    // record previous position
+
+    // basically a clone of Roger's evasive code
+
+
+        // ignore invisible bullets completely for now (even when visible)
+
+
+    // when we are not evading, follow the path
+
+      // smooth path a little by turning early at corners, might get us stuck, though
+
+	// drive backward when target is behind, try to stick to last direction
+
+	// set desired turn speed
+
+	// tank doesn't turn while moving forward
+
+	// find how long it will take to get to next path segment
+
+	  // set desired speed
+
+
+  // no target
+
+  // don't target teammates or myself
+
+  // go after closest player
+  // FIXME -- this is a pretty stupid heuristic
+
+  // give bonus to non-paused player
+
+  // give bonus to non-deadzone targets
+
+
+
+
+
+  // work backwards (from target to me)
+
+    // if can't reach target then forget it
+    return;
+
+
+  // get list of points to go through to reach the target
+
+
+  // point is outside: find nearest region
+
+
+
+
+  // priority is to minimize distance traveled and distance left to go
+
+  // return distance traveled
+
+
+// Local Variables: ***
+// mode:C++ ***
+// tab-width: 8 ***
+// c-basic-offset: 2 ***
+// indent-tabs-mode: t ***
+// End: ***
+// ex: shiftwidth=2 tabstop=8
